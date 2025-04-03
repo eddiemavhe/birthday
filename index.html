@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Metadata -->
+  <meta charset="utf-8">
+  <title>For My Special One</title>
+  <meta name="description" content="Happy birthday to the most amazing person">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <!-- Favicon -->
+  <link rel="icon" type="image" href="il.png">
+  <!-- Stylesheet Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <!-- External Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Itim&display=swap" rel="stylesheet">
+  
+  <!-- Library JavaScript -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+  
+  <style>
+    /* CSS Variables */
+    :root {
+      --poppins: "Poppins", sans-serif;
+      --nunito: "Nunito Sans", sans-serif;
+      --caveat: "Caveat", cursive;
+      --quicksand: "Quicksand", sans-serif;
+      --itim: "Itim", cursive;
+      --inter: "Inter", sans-serif;
+      --dancing: "Dancing Script", cursive;
+      
+      --primary-color: #ff4d88;
+      --secondary-color: #8a2be2;
+      --accent-color: #ffb6c1;
+      --text-color: #fff;
+      --dark-bg: #000;
+    }
+
+    /* Base Styles */
+    html, body {
+      position: relative;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--dark-bg);
+      font-family: var(--poppins);
+      font-size: 14px;
+      color: var(--text-color);
+      text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+      overflow-x: hidden;
+    }
+
+    /* Background Effect */
+    #bodyblur {
+      opacity: 0.6;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      transition: all 1s ease;
+      z-index: -1;
+    }
+
+    #wallpaper {
+      animation: zoomInOut 15s infinite alternate;
+      width: 100%;
+      height: 100%;
+      transform: scale(1);
+      transition: all 1.3s ease;
+      object-fit: cover;
+    }
+
+    @keyframes zoomInOut {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Swiper Styles */
+    .swiper {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+    .swiper-slide {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  height: 100vh !important;
+  padding: 20px;
+  box-sizing: border-box;
+}
+    
+    .swiper-pagination {
+      margin-bottom: 20vh;
+    }
+    
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      background-color: rgba(255, 255, 255, 0.5) !important;
+      opacity: 0.7 !important;
+      transition: all 0.3s ease;
+    }
+    
+    .swiper-pagination-bullet-active {
+      background-color: var(--primary-color) !important;
+      width: 14px;
+      height: 14px;
+      opacity: 1 !important;
+    }
+
+    /* Loading Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #000000, #181818);
+      z-index: 1000;
+      transition: opacity 0.5s ease;
+    }
+
+    .loading-message {
+      font-family: var(--dancing);
+      font-size: 24px;
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      margin-bottom: 30px;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.7;
+        transform: scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Love Button Styles */
+    .blocklove {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lovein {
+      background: linear-gradient(45deg, #ff69b4, #ff1493);
+      color: white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      padding: 15px;
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(255, 20, 147, 0.7);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .lovein:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 20, 147, 0.9);
+    }
+
+    .lovein svg {
+      width: 40px;
+      height: 40px;
+      fill: none;
+      stroke: white;
+      stroke-width: 2;
+    }
+
+    #ket {
+      font-family: var(--dancing);
+      font-size: 18px;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+
+    /* Sticker Styles */
+    .stiker {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 30px rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      padding: 10px;
+      margin-bottom: 25px;
+      transition: all 0.75s ease;
+    }
+
+    .stiker img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+    }
+
+    /* Text Content Styles */
+    p {
+      margin: 0 40px;
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.6;
+      word-wrap: break-word; /* Prevent overflow */
+    }
+
+    .title-text {
+      font-family: var(--dancing);
+      font-size: 28px !important;
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #ff69b4, #8a2be2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      padding: 0 15px; /* Added padding for better spacing */
+    }
+
+    .subtitle-text {
+      font-family: var(--quicksand);
+      font-size: 18px !important;
+      font-weight: 400;
+      margin-top: 5px;
+      padding: 0 15px;
+    }
+
+    /* Text Styling */
+    b.merah {
+      color: var(--primary-color);
+    }
+
+    b.kuning {
+      color: #ffdf00;
+    }
+
+    b.putih {
+      text-shadow: none;
+      padding: 3px 12px;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      border-radius: 20px;
+      color: white;
+    }
+
+    span.pink {
+      border-bottom: 2px solid var(--primary-color);
+      font-weight: 500;
+    }
+
+    span.gariskuning {
+      border-bottom: 2px solid #ffdf00;
+    }
+
+    /* Scrollable Content */
+    .blocktext {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  max-height: 70vh;
+  margin: 0 auto;
+  padding: 25px;
+  overflow: auto;
+  transform: none;
+  top: auto;
+  left: auto;
+}
+
+    .blocktext::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .blocktext::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+    }
+
+    /* Animation Classes */
+    .scale0 {
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.9s ease;
+    }
+
+    .scale1 {
+      opacity: 1;
+      transform: scale(1);
+      transition: all 0.9s ease;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      body {
+        font-size: 14px;
+      }
+      
+      .swiper-slide {
+        padding: 0 10px;
+      }
+      
+      .title-text {
+        font-size: 24px !important;
+      }
+      
+      .subtitle-text {
+        font-size: 16px !important;
+      }
+      
+      .blocktext {
+        width: 95%;
+        max-height: 55vh;
+        padding: 15px;
+        margin: 10px auto;
+      }
+      
+      p {
+        margin: 0 20px;
+        font-size: 15px;
+      }
+      
+      .stiker {
+        width: 90px;
+        height: 90px;
+      }
+      
+      .stiker img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .blocktext {
+        max-height: 55vh;
+        padding: 12px;
+      }
+      
+      p {
+        margin: 0 10px;
+        font-size: 14px;
+      }
+      
+      .title-text {
+        font-size: 22px !important;
+      }
+      
+      .subtitle-text {
+        font-size: 14px !important;
+      }
+    }
+
+    /* Text Styling */
+    b.merah {
+      color: var(--primary-color);
+    }
+
+    b.kuning {
+      color: #ffdf00;
+    }
+
+    b.putih {
+      text-shadow: none;
+      padding: 3px 12px;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      border-radius: 20px;
+      color: white;
+    }
+
+    span.pink {
+      border-bottom: 2px solid var(--primary-color);
+      font-weight: 500;
+    }
+
+    span.gariskuning {
+      border-bottom: 2px solid #ffdf00;
+    }
+
+    /* Scrollable Content */
+    .blocktext {
+      position: relative;
+      width: 90%;
+      max-width: 500px;
+      height: 380px;
+      margin: 20px auto;
+      padding: 20px;
+      overflow: auto;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      box-shadow: 0 4px 30px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .blocktext::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .blocktext::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+    }
+
+    /* Animation Classes */
+    .scale0 {
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.9s ease;
+    }
+
+    .scale1 {
+      opacity: 1;
+      transform: scale(1);
+      transition: all 0.9s ease;
+    }
+
+    /* Heart Animation */
+    .heart-icon {
+      z-index: 100;
+      width: 30px;
+      height: 30px;
+      position: fixed;
+      animation: heartMove linear 1;
+      top: -10vh;
+    }
+
+    @keyframes heartMove {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    .spin {
+      animation: spin 3s linear infinite alternate;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(10deg);
+      }
+      to {
+        transform: rotate(-10deg);
+      }
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      body {
+        font-size: 14px;
+      }
+      
+      .swiper-slide {
+        padding: 10px;
+      }
+      
+      .title-text {
+        font-size: 24px !important;
+      }
+      
+      .subtitle-text {
+        font-size: 16px !important;
+      }
+      
+      .blocktext {
+    max-height: 60vh;
+    padding: 15px;
+      }
+      
+      .stiker {
+        width: 90px;
+        height: 90px;
+      }
+      
+      .stiker img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    /* Footer Styles */
+    footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      z-index: 10;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+      color: var(--primary-color);
+    }
+    
+    /* Glowing text effect */
+    .glow-text {
+      text-shadow: 0 0 5px #fff, 0 0 10px var(--primary-color), 0 0 15px var(--primary-color);
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 10px var(--primary-color);
+      }
+      to {
+        text-shadow: 0 0 10px #fff, 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
+      }
+    }
+    
+    /* Confetti effect */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--primary-color);
+      animation: confetti-fall linear forwards;
+      z-index: 999;
+    }
+    
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+.title-text, .subtitle-text {
+  text-align: center;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.stiker {
+  margin: 20px auto;
+}
+
+p {
+  text-align: center;
+  margin: 15px 0;
+}
+    }
+  </style>
+</head>
+<body>
+  <!-- Audio background -->
+  <audio src="mhbd.mp3" id="linkmp3" class="sembunyi"></audio> 
+  
+  <!-- Loading overlay -->
+  <div class="overlay">
+    <div class="loading-message">
+      Hey, beautiful!<br>
+      I have something special for you...
+    </div>
+    <!-- Love button -->
+    <div id="loveIn" class="blocklove">
+      <!-- Love icon -->
+      <a href="##" class="lovein">
+        <svg class="line" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+          <g transform="translate(2.550170, 3.550158)">
+            <path d="M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z"></path>
+            <path d="M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842"></path>
+          </g>
+        </svg>
+      </a>
+      <!-- Tap love message -->
+      <p id="ket">Tap to reveal</p>
+    </div>
+  </div>
+  
+  <!-- Background blur effect -->
+  <div id="bodyblur"><img src="bg.jpg" id="wallpaper"></div>
+  
+  <!-- Swiper slider -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <!-- Sticker and text -->
+        <div id="stiker1" class="scale0 stiker"><img src="glg.gif"></div>
+        <h1 id="teks1" class="scale0 title-text">
+          This is for you, my love 💖<br>
+        </h1>
+        <p class="subtitle-text scale0" id="subtitle1">A special message on your special day</p>
+        <p class="subtitle-text scale0">⟹ Swipe to continue ⟹</p>
+      </div>
+      
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <!-- Sticker and text -->
+        <div id="stiker2" class="scale0 stiker"><img src="emh.gif"></div>
+        <h1 id="teks2" class="scale0 title-text glow-text">
+          Happy Birthday, My Sweet Angel 🎂✨
+        </h1>
+        <p class="subtitle-text scale0" id="subtitle2">Today is all about celebrating the most amazing person I know!</p>
+        <p class="subtitle-text scale0">⟹ Swipe to read my message ⟹</p>
+      </div>
+      
+      <!-- Slide 3 -->
+      <div class="swiper-slide">
+        <!-- Sticker and text -->
+        <div id="stiker3" class="scale0 stiker"><img src="kdp2.gif"></div>
+        <!-- Text content -->
+        <div id="scroll-container" class="blocktext">
+          <p id="teks3" style="font-family: var(--quicksand); font-size: 16px;">
+            <span class="pink">Hello</span> To My Forever Sunshine, My Soulmate, My Everything… 🌞👩❤️💋👨💫,<br><br>
+            
+            <b class="putih"><i>Happy birthday to you Tashinga!💐</i></b><br><br>
+            
+            Happy 23rd birthday, my love! Today, the world celebrates the day you graced it with your light 🌟💐. You’re not just my babe, my heart, my universe—you’re the melody to my every heartbeat, the sparkle in my every dream ✨💞.<br><br>
+            
+            May this year wrap you in boundless joy, crown your efforts with triumph, and lead you closer to every dream you’ve ever wished upon a star 🌠🎁. I pray you glow brighter, love deeper, and dance through life with health, gratitude, and the unwavering love of those who cherish you (especially me… always me 🙏❤️).<br><br>
+            
+            With every sunrise, you amaze me more 🌅. Your strength, kindness, and grace leave me in awe—how did I get so lucky to call you mine? 🥹💍 Never doubt yourself, my angel. Even if storms come, I’ll be your shelter. If you stumble, I’ll be your wings. Together, there’s no mountain we can’t climb 🌈🫂.<br><br>
+
+            Keep shining, my love. Keep laughing that laugh that melts me 🫠🎶. Keep being you—the miracle I thank God for every night 🌌💤.<br><br>
+
+            Happy 23rd, my forever person! Stay as radiant as the stars, as kind as your soul, and as magical as this love we share 🎉🍰🌙💞.<br><br>
+
+            
+            With every ounce of my love,<br>
+            Your Devoted Soulmate 🌍❤️🔥<br>
+            
+            Once again, happy birthday my love, my sweetheart!<br>
+            <i>You’re my today, tomorrow, and all the lifetimes after</i> 🥳💐🫶✨<br><br>
+            
+            With every ounce of my love,<br>
+            Your Devoted Soulmate 🌍❤️🔥
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Swiper pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+  
+  <!-- Swiper JavaScript library -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+  <!-- JavaScript -->
+  <script>
+    // Initialize variables and constants
+    var teksSekarang = 1;
+    const body = document.querySelector("body");
+    audio = new Audio('' + linkmp3.src); // Create audio object
+    
+    // Function to create confetti
+    function createConfetti() {
+      const colors = ['#ff69b4', '#8a2be2', '#ffdf00', '#ff4d88', '#ff1493'];
+      for (let i = 0; i < 150; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+        confetti.style.animationDelay = Math.random() * 5 + 's';
+        document.body.appendChild(confetti);
+        
+        // Remove confetti after animation
+        setTimeout(() => {
+          confetti.remove();
+        }, 7000);
+      }
+    }
+
+    // Initialize Swiper
+    var swiper = new Swiper(".mySwiper", {
+      pagination: {
+        el: ".swiper-pagination",
+        dynamicBullets: true,
+      },
+      on: {
+        // Event listener for slide change
+        slideChange: function () {
+          var currentIndex = swiper.activeIndex;
+
+          // Add animation effect when slide changes
+          teksSekarang = currentIndex + 1;
+          
+          // Get elements to animate
+          teksScale = document.querySelector('#teks' + teksSekarang);
+          stikerScale = document.querySelector('#stiker' + teksSekarang);
+          subtitleScale = document.querySelector('#subtitle' + teksSekarang);
+          
+          // Add scale animation
+          setTimeout(function () {
+            teksScale.classList.add("scale1");
+            stikerScale.classList.add("scale1");
+            if (subtitleScale) subtitleScale.classList.add("scale1");
+
+            // Call special animation function for specific slides
+            if (teksSekarang == 3) { 
+              katanimasi(); 
+              createConfetti(); // Create confetti on last slide
+            }
+          }, 50);
+        },
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+
+    // Get text from HTML element and clear it
+    var teks = teks3.innerHTML;
+    teks3.innerHTML = "";
+
+    // Function for special animation on certain slides
+    function katanimasi() {
+      new TypeIt("#teks3", {
+        strings: ["" + teks],
+        startDelay: 250,
+        speed: 40, // Typing speed
+        cursor: true,
+        afterComplete: function () {
+          clearInterval(scrollInterval);
+          teks3.innerHTML = teks;
+          setInterval(berjatuhan, 150); // Start heart falling animation
+        },
+      }).go();
+    }
+
+    // Event listener when page loads
+    window.addEventListener("load", (event) => {
+      window.scrollTo(0, 0);
+      var overlay = document.querySelector(".loading-message");
+      setTimeout(function() {
+        overlay.style.opacity = "0.8"; // Fade effect for loading message
+      }, 500);
+      var tomlv = document.querySelector(".blocklove");
+      tomlv.style.display = "flex"; // Show love button
+    });
+
+    var sudahKlik = true; // Variable to determine if button has been clicked
+    document.getElementById('loveIn').innerHTML = '<style>.lovein svg{animation:none;stroke:#fff;stroke-width:1.3;fill:none;width:35px;height:35px}</style><label class="lovein"><svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="translate(2.550170, 3.550158)"><path d="M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z"></path><path d="M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842"></path></g></svg></label><p id="ket">Tap to reveal</p>';
+
+    // Event listener when love button is clicked
+    document.getElementById("loveIn").onclick = function () {
+      if (sudahKlik) {
+        audio.play(); // Play audio
+        document.querySelector(".overlay").style.opacity = "0"; // Hide overlay with fade effect
+        setTimeout(function() {
+          document.querySelector(".overlay").style.display = "none";
+        }, 500);
+        
+        // Add animation effects to first sticker and text
+        setTimeout(function() {
+          stiker1.classList.add("scale1");
+          teks1.classList.add("scale1");
+          document.querySelector("#subtitle1").classList.add("scale1");
+        }, 500);
+      } else {
+        sudahKlik = true; // Mark button as clicked
+        document.getElementById('loveIn').innerHTML = '<style>.lovein svg{animation:none;stroke:#fff;stroke-width:1.3;fill:none;width:35px;height:35px}</style><label class="lovein"><svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="translate(2.550170, 3.550158)"><path d="M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z"></path><path d="M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842"></path></g></svg></label><p id="ket">Tap to reveal</p>';
+      }
+    }
+
+    // Function to create falling heart animation
+    function berjatuhan() {
+      const heart = document.createElement("div");
+      const colors = ['#ff69b4', '#ff1493', '#ff4d88', '#8a2be2'];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      
+      heart.innerHTML = `<svg class='line spin' style='opacity:.7;z-index:100;fill:${randomColor}' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g transform='translate(2.550170, 3.550158)'><path d='M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z'></path><path d='M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842'></path></g></svg>`;
+      
+      heart.className = "heart-icon";
+      heart.style.left = (Math.random() * 95) + "vw"; // Set horizontal position
+      heart.style.animationDuration = (Math.random() * 3) + 2 + "s"; // Set animation duration
+      heart.style.opacity = Math.random() * 0.5 + 0.5; // Randomize opacity
+      heart.style.transform = `scale(${Math.random() * 0.5 + 0.5})`; // Randomize size
+      
+      document.body.appendChild(heart); // Add heart to body
+      
+      // Remove heart after animation completes
+      setTimeout(() => {
+        heart.remove();
+      }, parseFloat(heart.style.animationDuration) * 1000);
+    }
+
+    // Function to remove hearts if there are too many
+    setInterval(function () {
+      var heartArr = document.querySelectorAll(".heart-icon");
+      if (heartArr.length > 100) {
+        heartArr[0].remove();
+      }
+    }, 100);
+
+    // Function for auto-scrolling on the page
+    const scrollContainer = document.getElementById("scroll-container");
+
+    function autoScroll() {
+      if (scrollContainer) {
+        scrollContainer.scrollTop += 1; // Scroll position adjustment
+      }
+    }
+
+    const scrollInterval = setInterval(autoScroll, 50); // Run auto-scroll every 50ms
+  </script>
+</body>
+</html>
