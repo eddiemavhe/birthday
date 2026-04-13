@@ -4,8 +4,8 @@
   <!-- Metadata -->
   <meta charset="utf-8">
   <title>For My Special One</title>
-  <meta name="description" content="Happy birthday to the most amazing person">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <meta name="description" content="A heartfelt birthday message for someone special">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon -->
   <link rel="icon" type="image" href="il.png">
   <!-- Stylesheet Swiper -->
@@ -17,444 +17,312 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter&family=Itim&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   
   <!-- Library JavaScript -->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
   
   <style>
-    /* CSS Variables */
     :root {
-      --poppins: "Poppins", sans-serif;
-      --nunito: "Nunito Sans", sans-serif;
-      --caveat: "Caveat", cursive;
-      --quicksand: "Quicksand", sans-serif;
-      --itim: "Itim", cursive;
-      --inter: "Inter", sans-serif;
-      --dancing: "Dancing Script", cursive;
-      
-      --primary-color: #ff4d88;
-      --secondary-color: #8a2be2;
-      --accent-color: #ffb6c1;
-      --text-color: #fff;
-      --dark-bg: #000;
+      --primary-color: #ff6f61; /* Coral */
+      --secondary-color: #6a1b9a; /* Deep Purple */
+      --accent-color: #ffd54f; /* Amber */
+      --text-color: #ffffff;
+      --muted-text: rgba(255, 255, 255, 0.82);
+      --bg: #050308;
+      --card-bg: rgba(0, 0, 0, 0.35);
+      --card-border: rgba(255, 255, 255, 0.16);
+      --shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+
+      --font-primary: "Playfair Display", serif;
+      --font-secondary: "Poppins", sans-serif;
+      --font-readable: "Quicksand", sans-serif;
     }
 
-    /* Base Styles */
     html, body {
       position: relative;
       height: 100%;
       margin: 0;
       padding: 0;
+      width: 100%;
+      overflow: hidden; /* Swiper controls the view; message scrolls inside its card */
     }
 
     body {
-      background: var(--dark-bg);
-      font-family: var(--poppins);
-      font-size: 14px;
+      background: var(--bg);
+      font-family: var(--font-secondary);
       color: var(--text-color);
-      text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
-      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Background Effect */
+    /* Background image layer */
     #bodyblur {
-      opacity: 0.6;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-      transition: all 1s ease;
-      z-index: -1;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
     }
 
     #wallpaper {
-      animation: zoomInOut 15s infinite alternate;
       width: 100%;
       height: 100%;
-      transform: scale(1);
-      transition: all 1.3s ease;
       object-fit: cover;
+      transform: scale(1.05);
+      filter: saturate(1.1) brightness(0.75) blur(1px);
+      animation: zoomInOut 18s infinite alternate;
+    }
+
+    #bodyblur::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(80% 60% at 50% 30%, rgba(255, 111, 97, 0.25), transparent 60%),
+        radial-gradient(70% 55% at 20% 90%, rgba(106, 27, 154, 0.25), transparent 60%),
+        rgba(0, 0, 0, 0.55);
+      pointer-events: none;
     }
 
     @keyframes zoomInOut {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.1);
-      }
-      100% {
-        transform: scale(1);
-      }
+      from { transform: scale(1.05); }
+      to { transform: scale(1.15); }
     }
 
-    /* Swiper Styles */
+    /* Swiper base */
     .swiper {
-  width: 100%;
-  height: 100vh; /* Full viewport height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+      width: 100%;
+      height: 100vh;
+    }
 
     .swiper-slide {
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100% !important;
-  height: 100vh !important;
-  padding: 20px;
-  box-sizing: border-box;
-}
-    
-    .swiper-pagination {
-      margin-bottom: 20vh;
-    }
-    
-    .swiper-pagination-bullet {
-      width: 10px;
-      height: 10px;
-      background-color: rgba(255, 255, 255, 0.5) !important;
-      opacity: 0.7 !important;
-      transition: all 0.3s ease;
-    }
-    
-    .swiper-pagination-bullet-active {
-      background-color: var(--primary-color) !important;
-      width: 14px;
-      height: 14px;
-      opacity: 1 !important;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      box-sizing: border-box;
     }
 
-    /* Loading Overlay */
+    .slide-card {
+      width: min(680px, 92vw);
+      border-radius: 20px;
+      padding: 18px 16px;
+      background: linear-gradient(135deg, rgba(255, 111, 97, 0.28), rgba(106, 27, 154, 0.28));
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    /* Overlay */
     .overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #000000, #181818);
+      background: linear-gradient(135deg, #000000, #12061d);
       z-index: 1000;
       transition: opacity 0.5s ease;
     }
 
     .loading-message {
-      font-family: var(--dancing);
-      font-size: 24px;
-      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
-      color: white;
+      font-family: var(--font-primary);
+      font-size: 26px;
+      line-height: 1.25;
+      color: var(--text-color);
       text-align: center;
-      margin-bottom: 30px;
-      animation: pulse 1.5s infinite alternate;
+      margin-bottom: 26px;
+      text-shadow: 0 6px 22px rgba(0,0,0,0.55);
     }
 
-    @keyframes pulse {
-      0% {
-        opacity: 0.7;
-        transform: scale(0.95);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    /* Love Button Styles */
+    /* Love button */
     .blocklove {
       display: none;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     .lovein {
-      background: linear-gradient(45deg, #ff69b4, #ff1493);
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
       color: white;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      padding: 15px;
-      font-size: 30px;
+      border-radius: 999px;
+      width: 62px;
+      height: 62px;
       display: flex;
       align-items: center;
-      text-align: center;
       justify-content: center;
-      box-shadow: 0 0 15px rgba(255, 20, 147, 0.7);
-      transition: all 0.3s ease;
+      box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.06), 0 18px 40px rgba(0,0,0,0.55);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
       cursor: pointer;
+      user-select: none;
     }
 
     .lovein:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px rgba(255, 20, 147, 0.9);
-    }
-
-    .lovein svg {
-      width: 40px;
-      height: 40px;
-      fill: none;
-      stroke: white;
-      stroke-width: 2;
+      transform: scale(1.08);
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.07), 0 22px 48px rgba(0,0,0,0.6);
     }
 
     #ket {
-      font-family: var(--dancing);
-      font-size: 18px;
-      margin-top: 10px;
-      opacity: 0.9;
+      font-family: var(--font-secondary);
+      font-size: 14px;
+      color: var(--muted-text);
+      margin: 0;
     }
 
-    /* Sticker Styles */
+    /* Sticker */
     .stiker {
       display: flex;
-      justify-content: center;
       align-items: center;
-      width: 100px;
-      height: 100px;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 4px 30px rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      padding: 10px;
-      margin-bottom: 25px;
-      transition: all 0.75s ease;
+      justify-content: center;
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+      overflow: hidden;
     }
 
     .stiker img {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
+      width: 92px;
+      height: 92px;
+      object-fit: cover;
     }
 
-    /* Text Content Styles */
-    p {
-      margin: 0 40px;
-      text-align: left;
-      font-size: 16px;
-      line-height: 1.6;
-      word-wrap: break-word; /* Prevent overflow */
-    }
-
+    /* Titles & text */
     .title-text {
-      font-family: var(--dancing);
-      font-size: 28px !important;
-      margin-bottom: 20px;
-      background: linear-gradient(45deg, #ff69b4, #8a2be2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: none;
-      padding: 0 15px; /* Added padding for better spacing */
+      font-family: var(--font-primary);
+      font-size: clamp(22px, 5.4vw, 34px);
+      margin: 6px 0 10px;
+      line-height: 1.12;
+      color: var(--text-color);
+      text-shadow: 0 10px 30px rgba(0,0,0,0.45);
     }
 
     .subtitle-text {
-      font-family: var(--quicksand);
-      font-size: 18px !important;
-      font-weight: 400;
-      margin-top: 5px;
-      padding: 0 15px;
+      font-family: var(--font-secondary);
+      font-size: clamp(14px, 3.8vw, 18px);
+      color: var(--muted-text);
+      line-height: 1.4;
+      margin: 8px 0 0;
     }
 
-    /* Text Styling */
-    b.merah {
-      color: var(--primary-color);
+    .glow-text {
+      text-shadow: 0 0 10px rgba(255, 213, 79, 0.35), 0 0 18px rgba(255, 111, 97, 0.25);
     }
 
-    b.kuning {
-      color: #ffdf00;
-    }
-
-    b.putih {
-      text-shadow: none;
-      padding: 3px 12px;
-      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-      border-radius: 20px;
-      color: white;
-    }
-
-    span.pink {
-      border-bottom: 2px solid var(--primary-color);
-      font-weight: 500;
-    }
-
-    span.gariskuning {
-      border-bottom: 2px solid #ffdf00;
-    }
-
-    /* Scrollable Content */
+    /* Message card inside Slide 3 */
     .blocktext {
-  position: relative;
-  width: 90%;
-  max-width: 600px;
-  max-height: 70vh;
-  margin: 0 auto;
-  padding: 25px;
-  overflow: auto;
-  transform: none;
-  top: auto;
-  left: auto;
-}
-
-    .blocktext::-webkit-scrollbar {
-      width: 5px;
-    }
-
-    .blocktext::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-    }
-
-    /* Animation Classes */
-    .scale0 {
-      opacity: 0;
-      transform: scale(0);
-      transition: all 0.9s ease;
-    }
-
-    .scale1 {
-      opacity: 1;
-      transform: scale(1);
-      transition: all 0.9s ease;
-    }
-
-    /* Responsive Design */
-    @media screen and (max-width: 768px) {
-      body {
-        font-size: 14px;
-      }
-      
-      .swiper-slide {
-        padding: 0 10px;
-      }
-      
-      .title-text {
-        font-size: 24px !important;
-      }
-      
-      .subtitle-text {
-        font-size: 16px !important;
-      }
-      
-      .blocktext {
-        width: 95%;
-        max-height: 55vh;
-        padding: 15px;
-        margin: 10px auto;
-      }
-      
-      p {
-        margin: 0 20px;
-        font-size: 15px;
-      }
-      
-      .stiker {
-        width: 90px;
-        height: 90px;
-      }
-      
-      .stiker img {
-        width: 80px;
-        height: 80px;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .blocktext {
-        max-height: 55vh;
-        padding: 12px;
-      }
-      
-      p {
-        margin: 0 10px;
-        font-size: 14px;
-      }
-      
-      .title-text {
-        font-size: 22px !important;
-      }
-      
-      .subtitle-text {
-        font-size: 14px !important;
-      }
-    }
-
-    /* Text Styling */
-    b.merah {
-      color: var(--primary-color);
-    }
-
-    b.kuning {
-      color: #ffdf00;
-    }
-
-    b.putih {
-      text-shadow: none;
-      padding: 3px 12px;
-      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-      border-radius: 20px;
-      color: white;
-    }
-
-    span.pink {
-      border-bottom: 2px solid var(--primary-color);
-      font-weight: 500;
-    }
-
-    span.gariskuning {
-      border-bottom: 2px solid #ffdf00;
-    }
-
-    /* Scrollable Content */
-    .blocktext {
-      position: relative;
-      width: 90%;
-      max-width: 500px;
-      height: 380px;
-      margin: 20px auto;
-      padding: 20px;
+      width: 100%;
+      max-height: min(56vh, 520px);
       overflow: auto;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 15px;
-      box-shadow: 0 4px 30px rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 14px auto 0;
+      padding: 16px;
+      border-radius: 16px;
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      text-align: left;
     }
 
-    .blocktext::-webkit-scrollbar {
-      width: 5px;
-    }
-
+    .blocktext::-webkit-scrollbar { width: 8px; }
     .blocktext::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255,255,255,0.25);
       border-radius: 10px;
     }
 
-    /* Animation Classes */
-    .scale0 {
-      opacity: 0;
-      transform: scale(0);
-      transition: all 0.9s ease;
+    #teks3 {
+      font-family: var(--font-readable);
+      font-size: 15.5px;
+      line-height: 1.75;
+      margin: 0;
+      color: rgba(255,255,255,0.92);
     }
 
+    b.putih {
+      padding: 4px 12px;
+      background: linear-gradient(45deg, rgba(255,111,97,0.95), rgba(106,27,154,0.95));
+      border-radius: 999px;
+      color: #fff;
+      text-shadow: none;
+    }
+
+    span.pink {
+      border-bottom: 2px solid rgba(255, 213, 79, 0.85);
+      font-weight: 600;
+    }
+
+    .memory-photo {
+      width: min(280px, 72vw);
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 16px 44px rgba(0,0,0,0.55);
+      margin: 10px auto 10px;
+      display: block;
+      max-height: 34vh;
+    }
+
+    /* Button */
+    .interactive-button {
+      background: linear-gradient(45deg, var(--accent-color), rgba(255, 213, 79, 0.75));
+      color: #1a1a1a;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 16px 34px rgba(0,0,0,0.38);
+      transition: transform 0.2s ease, filter 0.2s ease;
+      margin-top: 16px;
+      width: min(280px, 78vw);
+    }
+
+    .interactive-button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+    }
+
+    /* Pagination */
+    .swiper-pagination { margin-bottom: 10vh; }
+    .swiper-pagination-bullet {
+      width: 9px;
+      height: 9px;
+      background-color: rgba(255, 255, 255, 0.45) !important;
+      opacity: 0.8 !important;
+    }
+    .swiper-pagination-bullet-active {
+      background-color: var(--accent-color) !important;
+      width: 13px;
+      height: 13px;
+      box-shadow: 0 0 12px rgba(255, 213, 79, 0.45);
+      opacity: 1 !important;
+    }
+
+    /* Animation helpers */
+    .scale0 {
+      opacity: 0;
+      transform: scale(0.96);
+      transition: all 0.8s ease;
+    }
     .scale1 {
       opacity: 1;
       transform: scale(1);
-      transition: all 0.9s ease;
+      transition: all 0.8s ease;
     }
 
-    /* Heart Animation */
+    /* Hearts & confetti */
     .heart-icon {
       z-index: 100;
       width: 30px;
@@ -462,133 +330,52 @@
       position: fixed;
       animation: heartMove linear 1;
       top: -10vh;
+      pointer-events: none;
     }
 
     @keyframes heartMove {
-      0% {
-        transform: translateY(-10vh) rotate(0deg);
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-      }
+      0% { transform: translateY(-10vh) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
     }
 
-    .spin {
-      animation: spin 3s linear infinite alternate;
-    }
-
+    .spin { animation: spin 3s linear infinite alternate; }
     @keyframes spin {
-      from {
-        transform: rotate(10deg);
-      }
-      to {
-        transform: rotate(-10deg);
-      }
+      from { transform: rotate(10deg); }
+      to { transform: rotate(-10deg); }
     }
 
-    /* Responsive Design */
-    @media screen and (max-width: 768px) {
-      body {
-        font-size: 14px;
-      }
-      
-      .swiper-slide {
-        padding: 10px;
-      }
-      
-      .title-text {
-        font-size: 24px !important;
-      }
-      
-      .subtitle-text {
-        font-size: 16px !important;
-      }
-      
-      .blocktext {
-    max-height: 60vh;
-    padding: 15px;
-      }
-      
-      .stiker {
-        width: 90px;
-        height: 90px;
-      }
-      
-      .stiker img {
-        width: 80px;
-        height: 80px;
-      }
-    }
-
-    /* Footer Styles */
-    footer {
-      position: fixed;
-      bottom: 10px;
-      width: 100%;
-      text-align: center;
-      font-size: 12px;
-      z-index: 10;
-    }
-
-    footer a {
-      color: rgba(255, 255, 255, 0.6);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    footer a:hover {
-      color: var(--primary-color);
-    }
-    
-    /* Glowing text effect */
-    .glow-text {
-      text-shadow: 0 0 5px #fff, 0 0 10px var(--primary-color), 0 0 15px var(--primary-color);
-      animation: glow 1.5s ease-in-out infinite alternate;
-    }
-    
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 5px #fff, 0 0 10px var(--primary-color);
-      }
-      to {
-        text-shadow: 0 0 10px #fff, 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
-      }
-    }
-    
-    /* Confetti effect */
     .confetti {
-      position: absolute;
+      position: fixed;
+      top: -10px;
       width: 10px;
       height: 10px;
-      background: var(--primary-color);
+      background: var(--accent-color);
       animation: confetti-fall linear forwards;
-      z-index: 999;
+      z-index: 1200;
+      pointer-events: none;
     }
-    
+
     @keyframes confetti-fall {
-      0% {
-        transform: translateY(-100vh) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(720deg);
-        opacity: 0;
-      }
-.title-text, .subtitle-text {
-  text-align: center;
-  width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-}
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
 
-.stiker {
-  margin: 20px auto;
-}
+    /* Larger screens */
+    @media (min-width: 768px) {
+      .slide-card { padding: 22px 20px; }
+      .stiker { width: 104px; height: 104px; }
+      .stiker img { width: 104px; height: 104px; }
+      #teks3 { font-size: 16px; }
+      .blocktext { padding: 18px; }
+    }
 
-p {
-  text-align: center;
-  margin: 15px 0;
-}
+    /* Small screens: keep cards comfy and avoid pagination overlap */
+    @media (max-width: 420px) {
+      .slide-card { padding: 16px 14px; border-radius: 18px; }
+      .swiper-pagination { margin-bottom: 7vh; }
+      .memory-photo { width: min(230px, 70vw); max-height: 30vh; }
+      .blocktext { max-height: min(52vh, 520px); }
+      .heart-icon { width: 22px; height: 22px; }
     }
   </style>
 </head>
@@ -626,54 +413,92 @@ p {
     <div class="swiper-wrapper">
       <!-- Slide 1 -->
       <div class="swiper-slide">
-        <!-- Sticker and text -->
-        <div id="stiker1" class="scale0 stiker"><img src="glg.gif"></div>
-        <h1 id="teks1" class="scale0 title-text">
-          This is for you, my love 💖<br>
-        </h1>
-        <p class="subtitle-text scale0" id="subtitle1">A special message on your special day</p>
-        <p class="subtitle-text scale0">⟹ Swipe to continue ⟹</p>
+        <div class="slide-card">
+          <!-- Sticker and text -->
+          <div id="stiker1" class="scale0 stiker"><img src="glg.gif"></div>
+          <h1 id="teks1" class="scale0 title-text">Before you swipe…</h1>
+          <p class="subtitle-text scale0" id="subtitle1">Take a deep breath, my love. This is for you.</p>
+          <p class="subtitle-text scale0">A little love-letter made for your <b class="putih"><i>24th</i></b>.</p>
+          <p class="subtitle-text scale0">⟹ Swipe when you’re ready ⟹</p>
+        </div>
       </div>
       
       <!-- Slide 2 -->
       <div class="swiper-slide">
-        <!-- Sticker and text -->
-        <div id="stiker2" class="scale0 stiker"><img src="emh.gif"></div>
-        <h1 id="teks2" class="scale0 title-text glow-text">
-          Happy Birthday, My Sweet Angel 🎂✨
-        </h1>
-        <p class="subtitle-text scale0" id="subtitle2">Today is all about celebrating the most amazing person I know!</p>
-        <p class="subtitle-text scale0">⟹ Swipe to read my message ⟹</p>
+        <div class="slide-card">
+          <!-- Sticker and text -->
+          <div id="stiker2" class="scale0 stiker"><img src="emh.gif"></div>
+          <h1 id="teks2" class="scale0 title-text glow-text">Happy 24th, my beautiful girl ✨</h1>
+          <p class="subtitle-text scale0" id="subtitle2">You make ordinary moments feel like home.</p>
+          <p class="subtitle-text scale0">Soft heart. Strong soul. Unforgettable smile.</p>
+          <p class="subtitle-text scale0">⟹ Swipe to read what I’ve been holding in my heart ⟹</p>
+        </div>
       </div>
       
       <!-- Slide 3 -->
       <div class="swiper-slide">
-        <!-- Sticker and text -->
-        <div id="stiker3" class="scale0 stiker"><img src="kdp2.gif"></div>
-        <!-- Text content -->
-        <div id="scroll-container" class="blocktext">
-          <p id="teks3" style="font-family: var(--quicksand); font-size: 16px;">
-            <span class="pink">Hello</span> To My Forever Sunshine, My Soulmate, My Everything… 🌞👩❤️💋👨💫,<br><br>
-            
-            <b class="putih"><i>Happy birthday to you Tashinga!💐</i></b><br><br>
-            
-            Happy 23rd birthday, my love! Today, the world celebrates the day you graced it with your light 🌟💐. You’re not just my babe, my heart, my universe—you’re the melody to my every heartbeat, the sparkle in my every dream ✨💞.<br><br>
-            
-            May this year wrap you in boundless joy, crown your efforts with triumph, and lead you closer to every dream you’ve ever wished upon a star 🌠🎁. I pray you glow brighter, love deeper, and dance through life with health, gratitude, and the unwavering love of those who cherish you (especially me… always me 🙏❤️).<br><br>
-            
-            With every sunrise, you amaze me more 🌅. Your strength, kindness, and grace leave me in awe—how did I get so lucky to call you mine? 🥹💍 Never doubt yourself, my angel. Even if storms come, I’ll be your shelter. If you stumble, I’ll be your wings. Together, there’s no mountain we can’t climb 🌈🫂.<br><br>
+        <div class="slide-card">
+          <!-- Sticker and text -->
+          <div id="stiker3" class="scale0 stiker"><img src="kdp2.gif"></div>
+          <img class="memory-photo scale0" id="memoryPhoto3" src="he.png" alt="A memory of us">
+          <!-- Text content -->
+          <div id="scroll-container" class="blocktext">
+            <p id="teks3">
+            <span class="pink">Hello, my forever sunshine, my soulmate, my everything… 🌞👩❤️💋👨💫</span><br><br>
 
-            Keep shining, my love. Keep laughing that laugh that melts me 🫠🎶. Keep being you—the miracle I thank God for every night 🌌💤.<br><br>
+            <b class="putih"><i>Happy 24th Birthday, Tashinga! 💐</i></b><br><br>
 
-            Happy 23rd, my forever person! Stay as radiant as the stars, as kind as your soul, and as magical as this love we share 🎉🍰🌙💞.<br><br>
+            Today the world quietly celebrates something so huge for me: the day you were born. 🌟<br>
+            Another year of your laugh, your light, your stubborn little habits I secretly adore,<br>
+            another year of me falling deeper in love with you in ways I didn’t even know were possible. 💖<br><br>
 
-            
-            Once again, happy birthday my love, my sweetheart!<br>
-            <i>You’re my today, tomorrow, and all the lifetimes after</i> 🥳💐🫶✨<br><br>
-            
-            With every ounce of my love,<br>
-            Your Devoted Soulmate 🌍❤️🔥
-          </p>
+            You’re not just my girlfriend. You are my home, my peace, my safe place when everything feels too loud.<br>
+            You’re the soft voice that calms my storms, the warm hug that makes the world disappear,<br>
+            the one person I always want to run to—on my best days and on my worst. 🫂✨<br><br>
+
+            At 24, I hope you finally see what I see when I look at you:<br>
+            a woman who is strong, beautiful, soft-hearted yet powerful,<br>
+            someone who has survived so much and still chooses kindness, love, and hope.<br>
+            You inspire me every single day just by being you. 🌹<br><br>
+
+            I pray this year brings you closer to your dreams,<br>
+            that every effort you make is rewarded in ways that make your heart full,<br>
+            that your mind feels lighter, your soul feels safer,<br>
+            and that you never, ever have to question how loved you are—especially by me. 🙏❤️<br><br>
+
+            If life ever feels heavy, I promise to be your rest.<br>
+            If you ever doubt yourself, I’ll remind you who you are.<br>
+            If you ever feel alone, I’ll hold you so close that loneliness forgets your name.<br>
+            We’re a team, you and me, and I’m not going anywhere. 🌈🤝<br><br>
+
+            Thank you for every smile, every late-night talk, every silly moment,<br>
+            every “I love you” that you’ve given me.<br>
+            You have no idea how much you’ve healed me just by existing in my life.<br>
+            You are my greatest gift, my answered prayer, my miracle. 🌌💫<br><br>
+
+            So here’s to you at 24—<br>
+            to your beautiful heart, your gentle spirit, your loud laugh, your soft eyes,<br>
+            and to the countless memories we still have ahead of us.<br>
+            I can’t wait to keep growing with you, loving you, and choosing you every day. 💍💞<br><br>
+
+            Once again, happy birthday, my love… my sweetheart… my forever person. 🥳💐🫶✨<br>
+            <i>You’re my today, my tomorrow, and every lifetime after this one.</i><br><br>
+
+            With every beat of my heart, with all that I am and all I’ll ever be,<br>
+            Your devoted soulmate 🌍❤️🔥
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- New Slide 4 with interactive button -->
+      <div class="swiper-slide">
+        <div class="slide-card">
+          <div id="stiker4" class="scale0 stiker"><img src="he.png"></div>
+          <h1 id="teks4" class="scale0 title-text">One more thing…</h1>
+          <p id="subtitle4" class="scale0 subtitle-text">Tap the button and let the love rain down.</p>
+          <button class="interactive-button" id="surpriseBtn">Click for a Surprise</button>
+          <p class="subtitle-text" style="margin-top:12px;">(You can swipe back anytime.)</p>
         </div>
       </div>
     </div>
@@ -687,10 +512,16 @@ p {
   
   <!-- JavaScript -->
   <script>
-    // Initialize variables and constants
-    var teksSekarang = 1;
-    const body = document.querySelector("body");
-    audio = new Audio('' + linkmp3.src); // Create audio object
+    // Initialize variables and constants (avoid relying on implicit global IDs)
+    let teksSekarang = 1;
+    const body = document.body;
+    const linkmp3El = document.getElementById("linkmp3");
+    const audio = new Audio((linkmp3El && linkmp3El.src) ? linkmp3El.src : "mhbd.mp3");
+
+    const scrollContainer = document.getElementById("scroll-container");
+    const teks3El = document.getElementById("teks3");
+    let teks = teks3El ? teks3El.innerHTML : "";
+    if (teks3El) teks3El.innerHTML = "";
     
     // Function to create confetti
     function createConfetti() {
@@ -729,15 +560,18 @@ p {
           teksSekarang = currentIndex + 1;
           
           // Get elements to animate
-          teksScale = document.querySelector('#teks' + teksSekarang);
-          stikerScale = document.querySelector('#stiker' + teksSekarang);
-          subtitleScale = document.querySelector('#subtitle' + teksSekarang);
+          const teksScale = document.querySelector('#teks' + teksSekarang);
+          const stikerScale = document.querySelector('#stiker' + teksSekarang);
+          const subtitleScale = document.querySelector('#subtitle' + teksSekarang);
           
-          // Add scale animation
+          // Add scale animation (guard nulls so new slides can't crash)
           setTimeout(function () {
-            teksScale.classList.add("scale1");
-            stikerScale.classList.add("scale1");
+            if (teksScale) teksScale.classList.add("scale1");
+            if (stikerScale) stikerScale.classList.add("scale1");
             if (subtitleScale) subtitleScale.classList.add("scale1");
+
+            var photo3 = document.querySelector('#memoryPhoto3');
+            if (teksSekarang == 3 && photo3) photo3.classList.add("scale1");
 
             // Call special animation function for specific slides
             if (teksSekarang == 3) { 
@@ -753,20 +587,51 @@ p {
       },
     });
 
-    // Get text from HTML element and clear it
-    var teks = teks3.innerHTML;
-    teks3.innerHTML = "";
+    let hasTypedSlide3 = false;
+    let scrollInterval = null;
+    let userPausedScroll = false;
+
+    function stopAutoScroll() {
+      if (scrollInterval) {
+        clearInterval(scrollInterval);
+        scrollInterval = null;
+      }
+    }
+
+    function startAutoScroll() {
+      if (!scrollContainer) return;
+      stopAutoScroll();
+      userPausedScroll = false;
+      scrollInterval = setInterval(function () {
+        if (!userPausedScroll) scrollContainer.scrollTop += 1;
+      }, 85);
+    }
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener("wheel", function () {
+        userPausedScroll = true;
+      }, { passive: true });
+      scrollContainer.addEventListener("touchstart", function () {
+        userPausedScroll = true;
+      }, { passive: true });
+    }
 
     // Function for special animation on certain slides
     function katanimasi() {
+      if (hasTypedSlide3) return;
+      hasTypedSlide3 = true;
+      startAutoScroll();
+
+      if (!teks3El) return;
       new TypeIt("#teks3", {
         strings: ["" + teks],
-        startDelay: 250,
-        speed: 40, // Typing speed
+        startDelay: 450,
+        speed: 18, // Slower typing so it doesn't feel rushed
+        lifeLike: true,
         cursor: true,
         afterComplete: function () {
-          clearInterval(scrollInterval);
-          teks3.innerHTML = teks;
+          stopAutoScroll();
+          if (teks3El) teks3El.innerHTML = teks;
           setInterval(berjatuhan, 150); // Start heart falling animation
         },
       }).go();
@@ -783,28 +648,51 @@ p {
       tomlv.style.display = "flex"; // Show love button
     });
 
-    var sudahKlik = true; // Variable to determine if button has been clicked
-    document.getElementById('loveIn').innerHTML = '<style>.lovein svg{animation:none;stroke:#fff;stroke-width:1.3;fill:none;width:35px;height:35px}</style><label class="lovein"><svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="translate(2.550170, 3.550158)"><path d="M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z"></path><path d="M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842"></path></g></svg></label><p id="ket">Tap to reveal</p>';
+    let sudahKlik = false; // Has the intro been dismissed?
+    const loveInEl = document.getElementById('loveIn');
+    if (loveInEl) {
+      loveInEl.innerHTML = '<style>.lovein svg{animation:none;stroke:#fff;stroke-width:1.3;fill:none;width:35px;height:35px}</style><label class="lovein" aria-label="Tap to start"><svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="translate(2.550170, 3.550158)"><path d="M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z"></path><path d="M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842"></path></g></svg></label><p id="ket">Tap to reveal</p>';
+    }
 
     // Event listener when love button is clicked
-    document.getElementById("loveIn").onclick = function () {
-      if (sudahKlik) {
-        audio.play(); // Play audio
-        document.querySelector(".overlay").style.opacity = "0"; // Hide overlay with fade effect
-        setTimeout(function() {
-          document.querySelector(".overlay").style.display = "none";
-        }, 500);
-        
+    if (loveInEl) {
+      loveInEl.onclick = function () {
+        if (sudahKlik) return;
+        sudahKlik = true;
+
+        try { audio.play(); } catch (e) {}
+
+        const overlayEl = document.querySelector(".overlay");
+        if (overlayEl) {
+          overlayEl.style.opacity = "0"; // Hide overlay with fade effect
+          setTimeout(function() {
+            overlayEl.style.display = "none";
+          }, 500);
+        }
+
         // Add animation effects to first sticker and text
+        const stiker1El = document.getElementById("stiker1");
+        const teks1El = document.getElementById("teks1");
+        const subtitle1El = document.getElementById("subtitle1");
         setTimeout(function() {
-          stiker1.classList.add("scale1");
-          teks1.classList.add("scale1");
-          document.querySelector("#subtitle1").classList.add("scale1");
+          if (stiker1El) stiker1El.classList.add("scale1");
+          if (teks1El) teks1El.classList.add("scale1");
+          if (subtitle1El) subtitle1El.classList.add("scale1");
         }, 500);
-      } else {
-        sudahKlik = true; // Mark button as clicked
-        document.getElementById('loveIn').innerHTML = '<style>.lovein svg{animation:none;stroke:#fff;stroke-width:1.3;fill:none;width:35px;height:35px}</style><label class="lovein"><svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="translate(2.550170, 3.550158)"><path d="M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z"></path><path d="M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842"></path></g></svg></label><p id="ket">Tap to reveal</p>';
       }
+    }
+
+    // Surprise button: gentle confetti burst + jump back to the message
+    var surpriseBtn = document.getElementById("surpriseBtn");
+    if (surpriseBtn) {
+      surpriseBtn.addEventListener("click", function () {
+        createConfetti();
+        createConfetti();
+        surpriseBtn.textContent = "I love you ❤️";
+        setTimeout(function () {
+          swiper.slideTo(2);
+        }, 500);
+      });
     }
 
     // Function to create falling heart animation
@@ -837,16 +725,7 @@ p {
       }
     }, 100);
 
-    // Function for auto-scrolling on the page
-    const scrollContainer = document.getElementById("scroll-container");
-
-    function autoScroll() {
-      if (scrollContainer) {
-        scrollContainer.scrollTop += 1; // Scroll position adjustment
-      }
-    }
-
-    const scrollInterval = setInterval(autoScroll, 50); // Run auto-scroll every 50ms
+    // (scrollContainer is defined at the top for auto-scroll helpers)
   </script>
 </body>
 </html>
