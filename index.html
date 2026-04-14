@@ -724,8 +724,9 @@
     // Initialize variables and constants (avoid relying on implicit global IDs)
     let teksSekarang = 1;
     const body = document.body;
+    const AUDIO_FILE = "Tatie.mp3";
     const linkmp3El = document.getElementById("linkmp3");
-    const audio = linkmp3El || new Audio("Tatie.mp3");
+    const audio = linkmp3El || new Audio(AUDIO_FILE);
     try {
       audio.preload = "auto";
       audio.setAttribute && audio.setAttribute("playsinline", "");
@@ -733,6 +734,26 @@
       audio.volume = 0.9;
       audio.load && audio.load();
     } catch (e) {}
+
+    function setKetText(text) {
+      const ketEl = document.getElementById("ket");
+      if (ketEl) ketEl.textContent = text;
+    }
+
+    function refreshAudioSrc() {
+      try {
+        const busted = AUDIO_FILE + "?v=" + Date.now();
+        // Force a fresh fetch on hosted pages (avoids cached failed responses)
+        audio.src = busted;
+        audio.load && audio.load();
+      } catch (e) {}
+    }
+
+    if (audio && typeof audio.addEventListener === "function") {
+      audio.addEventListener("error", function () {
+        setKetText("Audio failed to load");
+      });
+    }
 
     const scrollContainer = document.getElementById("scroll-container");
     const teks3El = document.getElementById("teks3");
@@ -885,11 +906,14 @@
         sudahKlik = true;
 
         try {
+          refreshAudioSrc();
+          audio.muted = false;
+          audio.volume = 0.95;
+          if (typeof audio.currentTime === "number") audio.currentTime = 0;
           const playPromise = audio.play();
           if (playPromise && typeof playPromise.catch === "function") {
             playPromise.catch(function () {
-              const ketEl = document.getElementById("ket");
-              if (ketEl) ketEl.textContent = "Tap again if no sound";
+              setKetText("Tap again if no sound");
             });
           }
         } catch (e) {}
