@@ -604,7 +604,7 @@
 </head>
 <body>
   <!-- Audio background -->
-  <audio src="Tatie.mp3" id="linkmp3" class="sembunyi"></audio> 
+  <audio src="Tatie.mp3" id="linkmp3" class="sembunyi" preload="auto" playsinline></audio> 
   
   <!-- Loading overlay -->
   <div class="overlay">
@@ -725,7 +725,14 @@
     let teksSekarang = 1;
     const body = document.body;
     const linkmp3El = document.getElementById("linkmp3");
-    const audio = new Audio((linkmp3El && linkmp3El.src) ? linkmp3El.src : "Tatie.mp3");
+    const audio = linkmp3El || new Audio("Tatie.mp3");
+    try {
+      audio.preload = "auto";
+      audio.setAttribute && audio.setAttribute("playsinline", "");
+      audio.muted = false;
+      audio.volume = 0.9;
+      audio.load && audio.load();
+    } catch (e) {}
 
     const scrollContainer = document.getElementById("scroll-container");
     const teks3El = document.getElementById("teks3");
@@ -877,7 +884,15 @@
         if (sudahKlik) return;
         sudahKlik = true;
 
-        try { audio.play(); } catch (e) {}
+        try {
+          const playPromise = audio.play();
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(function () {
+              const ketEl = document.getElementById("ket");
+              if (ketEl) ketEl.textContent = "Tap again if no sound";
+            });
+          }
+        } catch (e) {}
 
         const overlayEl = document.querySelector(".overlay");
         if (overlayEl) {
