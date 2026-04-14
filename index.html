@@ -18,6 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter&family=Itim&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
   
   <!-- Library JavaScript -->
   <script src="https://unpkg.com/scrollreveal"></script>
@@ -25,16 +26,16 @@
   
   <style>
     :root {
-      /* Eye-catchy neon palette */
-      --primary-color: #ff2d8d; /* Neon pink */
-      --secondary-color: #7c3aed; /* Electric purple */
-      --accent-color: #ffd166; /* Warm gold */
-      --accent-2: #22d3ee; /* Neon cyan */
+      /* Luxury palette */
+      --primary-color: #e11d48; /* Rose */
+      --secondary-color: #4c1d95; /* Deep violet */
+      --accent-color: #f6d58a; /* Champagne gold */
+      --accent-2: #fff3cf; /* Ivory */
       --text-color: #ffffff;
       --muted-text: rgba(255, 255, 255, 0.82);
-      --bg: #050308;
-      --card-bg: rgba(0, 0, 0, 0.35);
-      --card-border: rgba(255, 255, 255, 0.16);
+      --bg: #040208;
+      --card-bg: rgba(10, 6, 16, 0.56);
+      --card-border: rgba(246, 213, 138, 0.20);
       --shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
 
       --radius-xl: 24px;
@@ -43,8 +44,8 @@
       --shadow-strong: 0 18px 60px rgba(0,0,0,0.62);
 
       --font-primary: "Playfair Display", serif;
-      --font-secondary: "Poppins", sans-serif;
-      --font-readable: "Quicksand", sans-serif;
+      --font-secondary: "Inter", "Poppins", sans-serif;
+      --font-readable: "Cormorant Garamond", serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -74,14 +75,14 @@
       z-index: -1;
       pointer-events: none;
       background:
-        radial-gradient(45% 35% at 20% 30%, rgba(255, 45, 141, 0.38), transparent 60%),
-        radial-gradient(50% 42% at 80% 25%, rgba(34, 211, 238, 0.28), transparent 60%),
-        radial-gradient(55% 50% at 70% 85%, rgba(124, 58, 237, 0.34), transparent 60%),
-        radial-gradient(45% 45% at 15% 85%, rgba(255, 209, 102, 0.18), transparent 62%);
-      filter: blur(30px) saturate(1.2);
-      opacity: 0.95;
+        radial-gradient(46% 36% at 18% 28%, rgba(225, 29, 72, 0.26), transparent 62%),
+        radial-gradient(52% 44% at 84% 22%, rgba(76, 29, 149, 0.30), transparent 62%),
+        radial-gradient(58% 52% at 70% 88%, rgba(246, 213, 138, 0.16), transparent 64%),
+        radial-gradient(46% 46% at 16% 86%, rgba(255, 243, 207, 0.08), transparent 65%);
+      filter: blur(34px) saturate(1.05);
+      opacity: 0.75;
       transform: translate3d(0,0,0);
-      animation: auroraDrift 12s ease-in-out infinite alternate;
+      animation: auroraDrift 14s ease-in-out infinite alternate;
       mix-blend-mode: screen;
     }
 
@@ -120,7 +121,7 @@
       height: 100%;
       object-fit: cover;
       transform: scale(1.05);
-      filter: saturate(1.15) brightness(0.86) blur(1px);
+      filter: saturate(1.05) brightness(0.82) contrast(1.05) blur(1px);
       animation: zoomInOut 18s infinite alternate;
     }
 
@@ -129,10 +130,10 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(85% 65% at 50% 25%, rgba(255, 45, 141, 0.22), transparent 62%),
-        radial-gradient(75% 60% at 15% 90%, rgba(34, 211, 238, 0.18), transparent 60%),
-        radial-gradient(70% 60% at 85% 85%, rgba(124, 58, 237, 0.22), transparent 60%),
-        rgba(0, 0, 0, 0.50);
+        radial-gradient(88% 70% at 50% 18%, rgba(246, 213, 138, 0.12), transparent 65%),
+        radial-gradient(75% 60% at 18% 88%, rgba(225, 29, 72, 0.14), transparent 62%),
+        radial-gradient(70% 60% at 85% 85%, rgba(76, 29, 149, 0.18), transparent 62%),
+        rgba(0, 0, 0, 0.58);
       pointer-events: none;
     }
 
@@ -167,10 +168,10 @@
       align-items: center;
       gap: 10px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03)),
-        radial-gradient(120% 140% at 50% -10%, rgba(255, 209, 102, 0.18), transparent 56%),
-        radial-gradient(120% 120% at 10% 0%, rgba(34, 211, 238, 0.12), transparent 60%),
-        linear-gradient(135deg, rgba(255, 45, 141, 0.22), rgba(124, 58, 237, 0.20));
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
+        radial-gradient(120% 140% at 50% -10%, rgba(246, 213, 138, 0.14), transparent 58%),
+        radial-gradient(110% 120% at 0% 10%, rgba(225, 29, 72, 0.10), transparent 62%),
+        linear-gradient(135deg, rgba(76, 29, 149, 0.18), rgba(10, 6, 16, 0.55));
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid transparent;
@@ -178,12 +179,12 @@
       background-clip: padding-box, padding-box, border-box;
       box-shadow: var(--shadow-strong), var(--ring);
       text-align: center;
-      animation: cardFloat 7s ease-in-out infinite;
+      animation: cardFloat 9s ease-in-out infinite;
     }
 
     @keyframes cardFloat {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-4px); }
+      50% { transform: translateY(-3px); }
     }
 
     /* Animated gradient border ring (premium + eye-catchy) */
@@ -195,21 +196,24 @@
       border-radius: inherit;
       background: conic-gradient(
         from 180deg,
-        rgba(255, 45, 141, 0.85),
-        rgba(34, 211, 238, 0.75),
-        rgba(255, 209, 102, 0.80),
-        rgba(124, 58, 237, 0.85),
-        rgba(255, 45, 141, 0.85)
+        rgba(246, 213, 138, 0.78),
+        rgba(255, 243, 207, 0.60),
+        rgba(225, 29, 72, 0.55),
+        rgba(76, 29, 149, 0.70),
+        rgba(246, 213, 138, 0.78)
       );
-      opacity: 0.65;
+      opacity: 0.38;
       filter: blur(0px);
       pointer-events: none;
       -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
+      mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
-      animation: borderSpin 12s linear infinite;
+      animation: borderSpin 22s linear infinite;
     }
 
     @keyframes borderSpin {
@@ -223,8 +227,8 @@
       inset: -2px;
       border-radius: inherit;
       background: radial-gradient(60% 45% at 50% 0%, rgba(255, 213, 79, 0.26), transparent 60%),
-                  radial-gradient(55% 55% at 0% 80%, rgba(255, 111, 97, 0.18), transparent 60%),
-                  radial-gradient(55% 55% at 100% 70%, rgba(106, 27, 154, 0.22), transparent 60%);
+                  radial-gradient(55% 55% at 0% 80%, rgba(225, 29, 72, 0.14), transparent 60%),
+                  radial-gradient(55% 55% at 100% 70%, rgba(76, 29, 149, 0.18), transparent 60%);
       opacity: 0.9;
       pointer-events: none;
       filter: blur(10px);
@@ -241,9 +245,9 @@
       justify-content: center;
       align-items: center;
       background:
-        radial-gradient(70% 55% at 50% 10%, rgba(255, 45, 141, 0.20), transparent 60%),
-        radial-gradient(65% 50% at 20% 85%, rgba(34, 211, 238, 0.16), transparent 62%),
-        radial-gradient(60% 50% at 85% 80%, rgba(124, 58, 237, 0.22), transparent 62%),
+        radial-gradient(70% 55% at 50% 10%, rgba(246, 213, 138, 0.16), transparent 60%),
+        radial-gradient(65% 50% at 20% 85%, rgba(225, 29, 72, 0.12), transparent 62%),
+        radial-gradient(60% 50% at 85% 80%, rgba(76, 29, 149, 0.20), transparent 62%),
         linear-gradient(135deg, #000000, #12061d);
       z-index: 1000;
       transition: opacity 0.5s ease;
@@ -269,7 +273,7 @@
     }
 
     .lovein {
-      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(45deg, rgba(246, 213, 138, 1), rgba(225, 29, 72, 0.90));
       color: white;
       border-radius: 999px;
       width: 62px;
@@ -324,8 +328,8 @@
       margin: 0 auto 14px;
       border-radius: 999px;
       position: relative;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(246, 213, 138, 0.06);
+      border: 1px solid rgba(246, 213, 138, 0.22);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       box-shadow: 0 10px 28px rgba(0,0,0,0.45);
@@ -337,7 +341,7 @@
       position: absolute;
       inset: -2px;
       border-radius: inherit;
-      background: conic-gradient(from 180deg, rgba(255,209,102,0.45), rgba(255,45,141,0.32), rgba(34,211,238,0.30), rgba(124,58,237,0.38), rgba(255,209,102,0.45));
+      background: conic-gradient(from 180deg, rgba(246, 213, 138, 0.45), rgba(255, 243, 207, 0.32), rgba(225, 29, 72, 0.26), rgba(76, 29, 149, 0.34), rgba(246, 213, 138, 0.45));
       filter: blur(8px);
       opacity: 0.6;
       pointer-events: none;
@@ -364,8 +368,8 @@
 
     /* Make headings pop (still readable) */
     .title-text {
-      background: linear-gradient(90deg, rgba(255, 209, 102, 1), rgba(34, 211, 238, 0.95), rgba(255, 45, 141, 0.98));
-      background-size: 180% 100%;
+      background: linear-gradient(90deg, rgba(255, 243, 207, 0.95), rgba(246, 213, 138, 1), rgba(225, 29, 72, 0.75));
+      background-size: 160% 100%;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -393,14 +397,14 @@
       padding: 10px 14px;
       border-radius: 999px;
       background: linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid rgba(246, 213, 138, 0.18);
       box-shadow: 0 12px 26px rgba(0,0,0,0.35);
       gap: 8px;
       color: rgba(255,255,255,0.9);
     }
 
     .glow-text {
-      text-shadow: 0 0 10px rgba(255, 213, 79, 0.35), 0 0 18px rgba(255, 111, 97, 0.25);
+      text-shadow: 0 0 10px rgba(246, 213, 138, 0.22), 0 0 18px rgba(225, 29, 72, 0.16);
     }
 
     /* Message card inside Slide 3 */
@@ -412,9 +416,9 @@
       padding: 16px;
       border-radius: var(--radius-lg);
       background:
-        radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.07), transparent 60%),
-        rgba(0, 0, 0, 0.30);
-      border: 1px solid rgba(255,255,255,0.14);
+        radial-gradient(140% 90% at 50% 0%, rgba(246, 213, 138, 0.07), transparent 60%),
+        rgba(0, 0, 0, 0.34);
+      border: 1px solid rgba(246, 213, 138, 0.16);
       box-shadow: 0 16px 40px rgba(0,0,0,0.45);
       text-align: left;
     }
@@ -427,22 +431,22 @@
 
     #teks3 {
       font-family: var(--font-readable);
-      font-size: 15.5px;
-      line-height: 1.75;
+      font-size: 16px;
+      line-height: 1.85;
       margin: 0;
       color: rgba(255,255,255,0.94);
     }
 
     b.putih {
       padding: 4px 12px;
-      background: linear-gradient(45deg, rgba(255,111,97,0.95), rgba(106,27,154,0.95));
+      background: linear-gradient(90deg, rgba(255, 243, 207, 0.95), rgba(246, 213, 138, 1));
       border-radius: 999px;
-      color: #fff;
+      color: rgba(18, 12, 26, 0.98);
       text-shadow: none;
     }
 
     span.pink {
-      border-bottom: 2px solid rgba(255, 213, 79, 0.85);
+      border-bottom: 2px solid rgba(246, 213, 138, 0.75);
       font-weight: 600;
     }
 
@@ -464,9 +468,9 @@
     .interactive-button {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(90deg, rgba(255, 209, 102, 1), rgba(34, 211, 238, 0.90), rgba(255, 45, 141, 0.95));
-      background-size: 180% 100%;
-      color: #1a1a1a;
+      background: linear-gradient(90deg, rgba(255, 243, 207, 0.95), rgba(246, 213, 138, 1), rgba(225, 29, 72, 0.70));
+      background-size: 160% 100%;
+      color: rgba(18, 12, 26, 0.98);
       padding: 12px 16px;
       border: none;
       border-radius: 999px;
@@ -512,10 +516,10 @@
       opacity: 0.8 !important;
     }
     .swiper-pagination-bullet-active {
-      background-color: var(--accent-2) !important;
+      background-color: var(--accent-color) !important;
       width: 13px;
       height: 13px;
-      box-shadow: 0 0 12px rgba(34, 211, 238, 0.45);
+      box-shadow: 0 0 12px rgba(246, 213, 138, 0.35);
       opacity: 1 !important;
     }
 
@@ -583,7 +587,7 @@
       .slide-card { padding: 22px 20px; }
       .stiker { width: 104px; height: 104px; }
       .stiker img { width: 104px; height: 104px; }
-      #teks3 { font-size: 16px; }
+      #teks3 { font-size: 18px; }
       .blocktext { padding: 18px; }
     }
 
@@ -594,6 +598,7 @@
       .memory-photo { width: min(230px, 70vw); max-height: 30vh; }
       .blocktext { max-height: min(52vh, 520px); }
       .heart-icon { width: 22px; height: 22px; }
+      #teks3 { font-size: 15.8px; }
     }
   </style>
 </head>
@@ -637,6 +642,7 @@
           <h1 id="teks1" class="scale0 title-text">Before you swipe…</h1>
           <p class="subtitle-text scale0" id="subtitle1">Take a deep breath, my love. This is for you.</p>
           <p class="subtitle-text scale0">A little love-letter made for your <b class="putih"><i>24th</i></b>.</p>
+          <p class="subtitle-text scale0">Headphones on (if you can) — I want this to feel like a moment, not just a page.</p>
           <p class="subtitle-text scale0 hint">⟹ Swipe when you’re ready ⟹</p>
         </div>
       </div>
@@ -649,6 +655,7 @@
           <h1 id="teks2" class="scale0 title-text glow-text">Happy 24th, my beautiful girl ✨</h1>
           <p class="subtitle-text scale0" id="subtitle2">You make ordinary moments feel like home.</p>
           <p class="subtitle-text scale0">Soft heart. Strong soul. Unforgettable smile.</p>
+          <p class="subtitle-text scale0">This is a small, intentional celebration of you — your heart, your grace, your glow.</p>
           <p class="subtitle-text scale0 hint">⟹ Swipe to read what I’ve been holding in my heart ⟹</p>
         </div>
       </div>
@@ -666,44 +673,30 @@
 
             <b class="putih"><i>Happy 24th Birthday, Tashinga! 💐</i></b><br><br>
 
-            Today the world quietly celebrates something so huge for me: the day you were born. 🌟<br>
-            Another year of your laugh, your light, your stubborn little habits I secretly adore,<br>
-            another year of me falling deeper in love with you in ways I didn’t even know were possible. 💖<br><br>
+            Today isn’t just your birthday but it’s a reminder to me that God gave the world someone rare… and gave me the privilege of loving her. 🌟<br>
+            You are the kind of love that doesn’t just make me happy… you make me <i>better</i>. You make me softer where I’m hard, calmer where I’m loud, and braver where I doubt. 💖<br><br>
 
-            You’re not just my girlfriend. You are my home, my peace, my safe place when everything feels too loud.<br>
-            You’re the soft voice that calms my storms, the warm hug that makes the world disappear,<br>
-            the one person I always want to run to—on my best days and on my worst. 🫂✨<br><br>
+            And I want to say this in the most honest way: our love hasn’t been perfect, it’s been <i>real</i>.<br>
+            We’ve had misunderstandings. We’ve had quiet days. We’ve had moments where life felt heavy and we didn’t know what to say… but somehow, even then, we found our way back to each other. Not because it was easy but because <b>we chose us</b>. Again. And again. 🤝<br><br>
 
-            At 24, I hope you finally see what I see when I look at you:<br>
-            a woman who is strong, beautiful, soft-hearted yet powerful,<br>
-            someone who has survived so much and still chooses kindness, love, and hope.<br>
-            You inspire me every single day just by being you. 🌹<br><br>
+            That’s what I love most about you, Tashinga… you don’t just love me when everything is sweet, you love me in the middle of the mess too. You stay. You try. You care. And you don’t even realize how beautiful that is. 🌹<br><br>
 
-            I pray this year brings you closer to your dreams,<br>
-            that every effort you make is rewarded in ways that make your heart full,<br>
-            that your mind feels lighter, your soul feels safer,<br>
-            and that you never, ever have to question how loved you are—especially by me. 🙏❤️<br><br>
+            At 24, I want you to step into this year knowing something deeply: you are enough. You are powerful. You are gentle. You are worthy of the kind of love that feels safe and steady, the kind of love that doesn’t run. And I want to be that for you. 🙏❤️<br><br>
 
-            If life ever feels heavy, I promise to be your rest.<br>
-            If you ever doubt yourself, I’ll remind you who you are.<br>
-            If you ever feel alone, I’ll hold you so close that loneliness forgets your name.<br>
-            We’re a team, you and me, and I’m not going anywhere. 🌈🤝<br><br>
+            I’m proud of you, for your heart, for your growth, for the way you keep going even when no one sees the weight you carry. I’m proud of the woman you are becoming… and grateful I get to witness it up close. 🫂✨<br><br>
 
-            Thank you for every smile, every late-night talk, every silly moment,<br>
-            every “I love you” that you’ve given me.<br>
-            You have no idea how much you’ve healed me just by existing in my life.<br>
-            You are my greatest gift, my answered prayer, my miracle. 🌌💫<br><br>
+            So here’s my promise, not just for today, but for every day that comes after:<br>
+            When life is soft, I’ll celebrate you.<br>
+            When life is hard, I’ll hold you.<br>
+            When you’re tired, I’ll be your peace.<br>
+            When you’re happy, I’ll be the loudest reason you smile.<br>
+            I choose you; in the highs, in the lows, and in every ordinary day in between. 💍💞<br><br>
 
-            So here’s to you at 24—<br>
-            to your beautiful heart, your gentle spirit, your loud laugh, your soft eyes,<br>
-            and to the countless memories we still have ahead of us.<br>
-            I can’t wait to keep growing with you, loving you, and choosing you every day. 💍💞<br><br>
+            Happy 24th birthday, my love. My best friend. My home.<br>
+            <i>You’re my today, my tomorrow, and the love I will keep choosing.</i> 🥳💐🫶✨<br><br>
 
-            Once again, happy birthday, my love… my sweetheart… my forever person. 🥳💐🫶✨<br>
-            <i>You’re my today, my tomorrow, and every lifetime after this one.</i><br><br>
-
-            With every beat of my heart, with all that I am and all I’ll ever be,<br>
-            Your devoted soulmate 🌍❤️🔥
+            With all of me,<br>
+            Your devoted soulmate 🌍❤️
             </p>
           </div>
         </div>
@@ -714,9 +707,9 @@
         <div class="slide-card">
           <div id="stiker4" class="scale0 stiker"><img src="he.png"></div>
           <h1 id="teks4" class="scale0 title-text">One more thing…</h1>
-          <p id="subtitle4" class="scale0 subtitle-text">Tap the button and let the love rain down.</p>
-          <button class="interactive-button" id="surpriseBtn">Click for a Surprise</button>
-          <p class="subtitle-text hint" style="margin-top:12px;">(You can swipe back anytime.)</p>
+          <p id="subtitle4" class="scale0 subtitle-text">Tap for a tiny promise, from me to you.</p>
+          <button class="interactive-button" id="surpriseBtn">Open your surprise</button>
+          <p id="surpriseNote" class="subtitle-text scale0" style="margin-top:12px; display:none; text-align:center;">A small promise: no matter what life throws at us, I will choose you — again and again. 💛</p>
         </div>
       </div>
     </div>
@@ -743,7 +736,7 @@
     
     // Function to create confetti
     function createConfetti() {
-      const colors = ['#ff69b4', '#8a2be2', '#ffdf00', '#ff4d88', '#ff1493'];
+      const colors = ['#f6d58a', '#fff3cf', '#e11d48', '#4c1d95', '#ffffff'];
       for (let i = 0; i < 150; i++) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
@@ -784,6 +777,14 @@
           
           // Add scale animation (guard nulls so new slides can't crash)
           setTimeout(function () {
+            // Reveal all scale0 elements inside the active slide
+            const activeSlide = document.querySelector('.swiper-slide-active');
+            if (activeSlide) {
+              activeSlide.querySelectorAll('.scale0').forEach(function (el) {
+                el.classList.add('scale1');
+              });
+            }
+
             if (teksScale) teksScale.classList.add("scale1");
             if (stikerScale) stikerScale.classList.add("scale1");
             if (subtitleScale) subtitleScale.classList.add("scale1");
@@ -822,7 +823,7 @@
       userPausedScroll = false;
       scrollInterval = setInterval(function () {
         if (!userPausedScroll) scrollContainer.scrollTop += 1;
-      }, 85);
+      }, 95);
     }
 
     if (scrollContainer) {
@@ -844,7 +845,7 @@
       new TypeIt("#teks3", {
         strings: ["" + teks],
         startDelay: 450,
-        speed: 18, // Slower typing so it doesn't feel rushed
+        speed: 16, // Even slower, more emotional pacing
         lifeLike: true,
         cursor: true,
         afterComplete: function () {
@@ -893,6 +894,14 @@
         const teks1El = document.getElementById("teks1");
         const subtitle1El = document.getElementById("subtitle1");
         setTimeout(function() {
+          // Reveal all elements in the first slide
+          const activeSlide = document.querySelector('.swiper-slide-active');
+          if (activeSlide) {
+            activeSlide.querySelectorAll('.scale0').forEach(function (el) {
+              el.classList.add('scale1');
+            });
+          }
+
           if (stiker1El) stiker1El.classList.add("scale1");
           if (teks1El) teks1El.classList.add("scale1");
           if (subtitle1El) subtitle1El.classList.add("scale1");
@@ -904,19 +913,30 @@
     var surpriseBtn = document.getElementById("surpriseBtn");
     if (surpriseBtn) {
       surpriseBtn.addEventListener("click", function () {
+        if (surpriseBtn.dataset.clicked === '1') return;
+        surpriseBtn.dataset.clicked = '1';
+
         createConfetti();
         createConfetti();
-        surpriseBtn.textContent = "I love you ❤️";
-        setTimeout(function () {
-          swiper.slideTo(2);
-        }, 500);
+
+        surpriseBtn.textContent = "I choose you 💛";
+        surpriseBtn.disabled = true;
+        surpriseBtn.style.filter = "brightness(0.98)";
+
+        const surpriseNote = document.getElementById("surpriseNote");
+        if (surpriseNote) {
+          surpriseNote.style.display = "block";
+          setTimeout(function () {
+            surpriseNote.classList.add("scale1");
+          }, 30);
+        }
       });
     }
 
     // Function to create falling heart animation
     function berjatuhan() {
       const heart = document.createElement("div");
-      const colors = ['#ff69b4', '#ff1493', '#ff4d88', '#8a2be2'];
+      const colors = ['#f6d58a', '#fff3cf', '#e11d48', '#4c1d95'];
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
       
       heart.innerHTML = `<svg class='line spin' style='opacity:.7;z-index:100;fill:${randomColor}' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g transform='translate(2.550170, 3.550158)'><path d='M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z'></path><path d='M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842'></path></g></svg>`;
